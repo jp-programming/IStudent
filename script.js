@@ -58,7 +58,6 @@ Student.prototype.studentGradesAvg = function(){
         .innerText = `${msg} ${this.average}`;
 };
 
-
 // Cada vez que se cree un objeto estudiante va a llamar a la función name y surname
 // que obtienen el nombre de la persona.
 const data = {
@@ -74,4 +73,23 @@ for(let i = 0; i < numStudents; i++){
     studentArr.push(new Student(data));
     studentArr[i].studentGradesAvg();
 }
+
+// Función que vuelve a imprimir el promedio de los estudiantes de
+// pero ordenados de manera descendente.
+function printStudentAvgList(arr){
+    // Ordena el arreglo de objetos estudiante tomando el promedio.
+    arr.sort((a, b) => b.average - a.average); 
+
+    const studentList = document.getElementById('studentList');
+    studentList.innerText = '';
+
+    // Este foreach vuelve a imprimir los mensajes de promedio.
+    arr.forEach((student) => 
+        studentList.appendChild(document.createElement('li'))
+            .innerText = `${student.getFullName()} su promedio de calificación es: ${student.average}`
+    );
+}
+
+// Agregando evento al boton de ordenar.
+document.getElementById('descAvg').onclick = () => printStudentAvgList(studentArr);
 
