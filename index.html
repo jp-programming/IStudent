@@ -5,12 +5,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IStudent</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Student</h1>
-    <ul id="studentList"></ul>
-    <h3>Ordenar promedio en forma descendente</h3>
-    <button type="button" id="descAvg">Ordenar</button>
+    <header>
+        <h1><span>IS</span>tudent</h1>
+    </header>
+    <!-- Contenido de la página -->
+    <main>
+        <h2>Datos del estudiante</h2>
+        <form id="form" class="studentForm">
+            <div>
+                <label for="name">Nombre/s:</label>
+                <input type="text" name="name" id="name" required>
+            </div>
+            <div>
+                <label for="surname">Apellido/s:</label>
+                <input type="text" name="surname" id="surname" required>
+            </div>
+            <button type="submit" id="submit" class="studentSubmit">Enviar</button>
+        </form>
+
+        <h3>Lista de promedios</h3>
+        <ul id="studentList"></ul>
+        <label for="descAvg">Ordenar en forma descendente:</label>
+        <button type="button" id="descAvg">Ordenar</button>
+    </main>
+    <footer>
+
+    </footer>
+    
+    <!-- script.js -->
     <script src="./script.js"></script>
 </body>
 </html>

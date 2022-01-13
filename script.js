@@ -8,7 +8,7 @@ Person.prototype.getFullName = function(){ return `${this.name} ${this.surname}`
 
 // Función constructora de los objetos estudiante
 function Student(data){
-    Person.call(this, data.name(), data.surname()); // Llama al método constructo de persona y lo vincula
+    Person.call(this, data.name, data.surname); // Llama al método constructo de persona y lo vincula
     this.grades = [];
     this.sumGrades = 0;
     this.average = null;
@@ -58,21 +58,22 @@ Student.prototype.studentGradesAvg = function(){
         .innerText = `${msg} ${this.average}`;
 };
 
-// Cada vez que se cree un objeto estudiante va a llamar a la función name y surname
-// que obtienen el nombre de la persona.
-const data = {
-    name: () => prompt('Introduzca su nombre: '),
-    surname: () => prompt('Introduzca su apellido: ')
-};
-
-// Ejecución del programa
-const numStudents = parseInt(prompt('Ingrese la cantidad de estudiantes:'));
 const studentArr = []; // Array que contiene los objetos estudiante.
 
-for(let i = 0; i < numStudents; i++){
-    studentArr.push(new Student(data));
-    studentArr[i].studentGradesAvg();
-}
+// Función que toma los datos del estudiante para almacenarlos en un array.
+const addStudent = function(e){
+    const name = document.getElementById('name');
+    const surname = document.getElementById('surname');
+
+    studentArr.push(new Student({name: name.value, surname: surname.value}));
+    e.preventDefault();
+    
+    name.value = '';
+    surname.value = '';
+
+    studentArr[studentArr.length - 1].studentGradesAvg();
+};
+
 
 // Función que vuelve a imprimir el promedio de los estudiantes de
 // pero ordenados de manera descendente.
@@ -90,6 +91,6 @@ function printStudentAvgList(arr){
     );
 }
 
-// Agregando evento al boton de ordenar.
+// Agregando eventos
 document.getElementById('descAvg').onclick = () => printStudentAvgList(studentArr);
-
+document.getElementById('form').onsubmit = e => addStudent(e);
