@@ -44,18 +44,22 @@ Student.prototype.setAverage = function(grades, num) {
 // llamar en el orden correcto a cada una de las funciones para que el código
 // sea legible.
 Student.prototype.studentGradesAvg = function(){
-    const msg = `${this.getFullName()} su promedio de calificación es:`;
     const num = parseInt(prompt(`Calcular promedio 
     Introduzca la cantidad de asignaturas:`));
 
     this.setGrades(num); // Guarda las calificaciones del estudiante.
     this.setAverage(this.sumGrades, num); // Guarda el promedio de las calificaciones.
 
-    // Renderiza en el elemento studentList del DOM un elemento li
-    // que contiene el nombre y promedio del estudiante. 
-    document.getElementById('studentList')
-        .appendChild(document.createElement('li'))
-        .innerText = `${msg} ${this.average}`;
+    // Crea un elemento div con una clase.
+    const studentInfo = document.createElement('div');
+    studentInfo.className="studentList__info";
+
+    // Renderiza en el elemento studentInfo del DOM un elemento div
+    // que contiene el nombre y promedio del estudiante.
+    document.getElementById('studentInfo')
+        .appendChild(studentInfo)
+        .innerHTML = `<p>${this.getFullName()}</p>
+                    <p>${this.average}</p>`;
 };
 
 const studentArr = []; // Array que contiene los objetos estudiante.
@@ -81,14 +85,18 @@ function printStudentAvgList(arr){
     // Ordena el arreglo de objetos estudiante tomando el promedio.
     arr.sort((a, b) => b.average - a.average); 
 
-    const studentList = document.getElementById('studentList');
-    studentList.innerText = '';
+    const studentInfo = document.getElementById('studentInfo');
+    studentInfo.innerText = '';
 
     // Este foreach vuelve a imprimir los mensajes de promedio.
-    arr.forEach((student) => 
-        studentList.appendChild(document.createElement('li'))
-            .innerText = `${student.getFullName()} su promedio de calificación es: ${student.average}`
-    );
+    arr.forEach((student) => {
+        const studentContainer = document.createElement('div');
+        studentContainer.className = "studentList__info";
+
+        studentInfo.appendChild(studentContainer)
+            .innerHTML = `<p>${student.getFullName()}</p> 
+                         <p>${student.average}</p>`;
+    });
 }
 
 // Agregando eventos

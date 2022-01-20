@@ -39,6 +39,28 @@ label{
     height: 30px;
 }
 
+.studentList{
+    display: flex;
+    flex-direction: column;
+    border: 3px solid black;
+}
+
+.studentList__head{
+    display: flex;
+    justify-content: space-around;
+}
+
+.studentList__content{
+    display: flex;
+    flex-direction: column;
+}
+
+.studentList__info{
+    display: flex;
+    justify-content: space-around;
+}
+
+
 footer{
     background-color: black;
     height: 5em;

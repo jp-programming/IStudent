@@ -26,10 +26,19 @@
             <button type="submit" id="submit" class="studentSubmit">Enviar</button>
         </form>
 
-        <h3>Lista de promedios</h3>
-        <ul id="studentList"></ul>
+        <h3>Lista de estudiantes</h3>
+        <div class="studentList">
+            <div class="studentList__head">
+                <span>Estudiante</span>
+                <span>Promedio</span>
+            </div>
+            <div class="studentList__content" id="studentInfo">
+            </div>
+        </div>
+
         <label for="descAvg">Ordenar en forma descendente:</label>
         <button type="button" id="descAvg">Ordenar</button>
+
     </main>
     <footer>
 
