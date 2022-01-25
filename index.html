@@ -13,26 +13,19 @@
     </header>
     <!-- Contenido de la página -->
     <main>
-        <h2>Datos del estudiante</h2>
-        <form id="form" class="studentForm">
-            <div>
-                <label for="name">Nombre/s:</label>
-                <input type="text" name="name" id="name" required>
-            </div>
-            <div>
-                <label for="surname">Apellido/s:</label>
-                <input type="text" name="surname" id="surname" required>
-            </div>
-            <button type="submit" id="submit" class="studentSubmit">Enviar</button>
-        </form>
-
-        <h3>Lista de estudiantes</h3>
+        <h2>Lista de estudiantes</h2>
         <div class="studentList">
             <div class="studentList__head">
                 <span>Estudiante</span>
                 <span>Promedio</span>
             </div>
             <div class="studentList__content" id="studentInfo">
+                <form id="form" class="studentForm">
+                    <button type="button" class="addButton" id="addStudent">+</button>
+                    <input type="text" name="name" id="name" class="hidden" placeholder="Nombre" required>
+                    <input type="text" name="surname" id="surname" class="hidden" placeholder="Apellido" required>
+                    <button type="submit" id="submit" class="studentSubmit hidden">Enviar</button>
+                </form>
             </div>
         </div>
 

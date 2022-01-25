@@ -11,7 +11,7 @@ function Student(data){
     Person.call(this, data.name, data.surname); // Llama al método constructo de persona y lo vincula
     this.grades = [];
     this.sumGrades = 0;
-    this.average = null;
+    this.average = 0;
 }
 
 // Hereda los métodos de persona
@@ -49,17 +49,6 @@ Student.prototype.studentGradesAvg = function(){
 
     this.setGrades(num); // Guarda las calificaciones del estudiante.
     this.setAverage(this.sumGrades, num); // Guarda el promedio de las calificaciones.
-
-    // Crea un elemento div con una clase.
-    const studentInfo = document.createElement('div');
-    studentInfo.className="studentList__info";
-
-    // Renderiza en el elemento studentInfo del DOM un elemento div
-    // que contiene el nombre y promedio del estudiante.
-    document.getElementById('studentInfo')
-        .appendChild(studentInfo)
-        .innerHTML = `<p>${this.getFullName()}</p>
-                    <p>${this.average}</p>`;
 };
 
 const studentArr = []; // Array que contiene los objetos estudiante.
@@ -75,7 +64,25 @@ const addStudent = function(e){
     name.value = '';
     surname.value = '';
 
-    studentArr[studentArr.length - 1].studentGradesAvg();
+    const student = studentArr[studentArr.length - 1];
+
+    //student.studentGradesAvg();
+
+    // Crea un elemento div con una clase.
+    const studentInfo = document.createElement('div');
+    studentInfo.className="studentList__info";
+    
+    // Renderiza en el elemento studentInfo del DOM un elemento div
+    // que contiene el nombre y promedio del estudiante.
+    document.getElementById('studentInfo')
+        .appendChild(studentInfo)
+        .innerHTML = `<p>${student.getFullName()}</p>
+                    <p>${student.average}</p>`;
+
+    // Añade una clase para ocultar los inputs y el boton de enviar.
+    document.getElementById('name').classList.add('hidden');
+    document.getElementById('surname').classList.add('hidden');
+    document.getElementById('submit').classList.add('hidden');                
 };
 
 
@@ -86,7 +93,11 @@ function printStudentAvgList(arr){
     arr.sort((a, b) => b.average - a.average); 
 
     const studentInfo = document.getElementById('studentInfo');
-    studentInfo.innerText = '';
+
+    const studentList = document.querySelectorAll('.studentList__info');
+    studentList.forEach( student => {
+        student.remove();
+    });
 
     // Este foreach vuelve a imprimir los mensajes de promedio.
     arr.forEach((student) => {
@@ -102,3 +113,9 @@ function printStudentAvgList(arr){
 // Agregando eventos
 document.getElementById('descAvg').onclick = () => printStudentAvgList(studentArr);
 document.getElementById('form').onsubmit = e => addStudent(e);
+document.getElementById('addStudent').onclick = () => {
+    // Elimina la clase que oculta los inputs al clickear en el boton de añadir
+    document.getElementById('name').classList.remove('hidden');
+    document.getElementById('surname').classList.remove('hidden');
+    document.getElementById('submit').classList.remove('hidden');
+};
