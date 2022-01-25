@@ -71,6 +71,7 @@ const addStudent = function(e){
     // Crea un elemento div con una clase.
     const studentInfo = document.createElement('div');
     studentInfo.className="studentList__info";
+    //studentInfo.onclick = () => alert('Hola');
     
     // Renderiza en el elemento studentInfo del DOM un elemento div
     // que contiene el nombre y promedio del estudiante.

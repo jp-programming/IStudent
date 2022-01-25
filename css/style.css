@@ -48,6 +48,7 @@ main{
 .studentList{
     display: flex;
     flex-direction: column;
+    padding: 5px 0;
     border: 3px solid black;
 }
 
@@ -59,11 +60,17 @@ main{
 .studentList__content{
     display: flex;
     flex-direction: column;
+    row-gap: 5px;
 }
 
 .studentList__info{
     display: flex;
     justify-content: space-around;
+
+    background-color: black;
+    color: white;
+    
+    cursor: pointer;
 }
 
 
