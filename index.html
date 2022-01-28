@@ -12,6 +12,13 @@
         <h1><span>IS</span>tudent</h1>
     </header>
     <!-- Contenido de la página -->
+    <div id="overlay">
+        <div id="modal">
+            <button id="closeModalBtn">X</button>
+            <h3 id="modalName"></h3>
+            
+        </div>
+    </div>
     <main>
         <h2>Lista de estudiantes</h2>
         <div class="studentList">
@@ -24,13 +31,31 @@
                     <button type="button" class="addButton" id="addStudent">+</button>
                     <input type="text" name="name" id="name" class="hidden" placeholder="Nombre" required>
                     <input type="text" name="surname" id="surname" class="hidden" placeholder="Apellido" required>
-                    <button type="submit" id="submit" class="studentSubmit hidden">Enviar</button>
+                    <button type="submit" id="submit" class="submitButton hidden">Enviar</button>
                 </form>
             </div>
         </div>
 
         <label for="descAvg">Ordenar en forma descendente:</label>
         <button type="button" id="descAvg">Ordenar</button>
+
+        <h2>Lista de asignaturas</h2>
+        <div class="subjectList">
+            <div class="subjectList__head">
+                <span>Id</span>
+                <span>Nombre</span>
+                <span>Cantidad de horas</span>
+            </div>
+            <div class="subjectList__content" id="subjectInfo">
+                <form id="formSubject" class="studentSubjectForm">
+                    <button type="button" class="addButton" id="addSubjectBtn">+</button>
+                    <input type="text" name="subjectId" id="subjectId" class="hidden" placeholder="Clave" required>
+                    <input type="text" name="subjectName" id="subjectName" class="hidden" placeholder="Nombre de asignatura" required>
+                    <input type="text" name="totalHours" id="totalHours" class="hidden" placeholder="Cantidad de horas" required>
+                    <button type="submit" id="subjectSubmitBtn" class="submitButton hidden">Enviar</button>
+                </form>
+            </div>
+        </div>
 
     </main>
     <footer>

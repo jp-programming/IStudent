@@ -7,11 +7,12 @@ function Person(name, surname) {
 Person.prototype.getFullName = function(){ return `${this.name} ${this.surname}` };
 
 // Función constructora de los objetos estudiante
-function Student(data){
+function Student(data, id){
     Person.call(this, data.name, data.surname); // Llama al método constructo de persona y lo vincula
-    this.grades = [];
-    this.sumGrades = 0;
-    this.average = 0;
+    this.id = id;
+    this.grades = data.grades || [];
+    this.sumGrades = data.sumGrades || 0;
+    this.average = data.average || 0;
 }
 
 // Hereda los métodos de persona
@@ -51,41 +52,82 @@ Student.prototype.studentGradesAvg = function(){
     this.setAverage(this.sumGrades, num); // Guarda el promedio de las calificaciones.
 };
 
+// Función constructora de las asignaturas.
+function Subject(data){
+    this.id = data.id;
+    this.name = data.subjectName;
+    this.totalHours = data.totalHours;
+};
+
+// Evento que al clickear en el estudiante se abre un modal para modificar sus asignaturas.
+const overlay = document.getElementById('overlay');
+const addStudentSubjects = (e) => {
+    overlay.style.display = 'block';
+    document.getElementById('modalName').innerText = e.target.firstChild.textContent;
+};
+
+// Función que imprime los datos de un objeto.
+const printDataList = (DOMClass, DOMId, id, arr, eventFunction = null) => {
+    // Crea un elemento div con una clase.
+    const container = document.createElement('div');
+    container.className = DOMClass;
+    container.id = id; // Añade una clave única al estudiante.
+
+    // Añade un evento si se envía uno.
+    if(eventFunction !== null) container.addEventListener('click', eventFunction);
+    
+    // Renderiza en el elemento contenedor padre de los contenedores un elemento div
+    const elemDOM = document.getElementById(DOMId)
+    elemDOM.appendChild(container);
+    arr.forEach( elem =>  
+        container.innerHTML += `<p>${elem}</p>`
+    );
+};
+
 const studentArr = []; // Array que contiene los objetos estudiante.
+
+// Comprueba si la clave studentList existe, si existe renderiza los datos almacenados en el
+// localStorage.
+if(localStorage.getItem('studentList')){
+    const studentsJSON = JSON.parse(localStorage.getItem('studentList'));
+    
+    studentsJSON.forEach( (student, i) => {
+        const elemArr = [];
+        studentArr.push(new Student({name: student.name, surname: student.surname,
+        grades: student.grades, sumGrades: student.sumGrades, average: student.average}, student.id));
+        elemArr.push(studentArr[i].getFullName(), studentArr[i].average);
+        printDataList("studentList__info", 'studentInfo', student.id, elemArr, addStudentSubjects);
+    });
+}
 
 // Función que toma los datos del estudiante para almacenarlos en un array.
 const addStudent = function(e){
     const name = document.getElementById('name');
     const surname = document.getElementById('surname');
 
-    studentArr.push(new Student({name: name.value, surname: surname.value}));
+    const studentLength = studentArr.length+1;
+    studentArr.push(new Student({name: name.value, surname: surname.value}, studentLength));
     e.preventDefault();
+
+    localStorage.setItem('studentList', JSON.stringify(studentArr));
     
     name.value = '';
     surname.value = '';
 
-    const student = studentArr[studentArr.length - 1];
+    const student = studentArr[studentLength - 1];
 
     //student.studentGradesAvg();
-
-    // Crea un elemento div con una clase.
-    const studentInfo = document.createElement('div');
-    studentInfo.className="studentList__info";
-    //studentInfo.onclick = () => alert('Hola');
     
-    // Renderiza en el elemento studentInfo del DOM un elemento div
-    // que contiene el nombre y promedio del estudiante.
-    document.getElementById('studentInfo')
-        .appendChild(studentInfo)
-        .innerHTML = `<p>${student.getFullName()}</p>
-                    <p>${student.average}</p>`;
+    // Array que contiene la info que se va a mostrar.
+    const elemArr = [];
+    elemArr.push(student.getFullName(), student.average);
+    printDataList("studentList__info", 'studentInfo', student.id, elemArr, addStudentSubjects);
 
     // Añade una clase para ocultar los inputs y el boton de enviar.
-    document.getElementById('name').classList.add('hidden');
-    document.getElementById('surname').classList.add('hidden');
+    name.classList.add('hidden');
+    surname.classList.add('hidden');
     document.getElementById('submit').classList.add('hidden');                
 };
-
 
 // Función que vuelve a imprimir el promedio de los estudiantes de
 // pero ordenados de manera descendente.
@@ -104,12 +146,61 @@ function printStudentAvgList(arr){
     arr.forEach((student) => {
         const studentContainer = document.createElement('div');
         studentContainer.className = "studentList__info";
+        studentContainer.id = student.id;
+        studentInfo.addEventListener('click', addStudentSubjects); // Añade un evento para gestionar las asignaturas.
 
         studentInfo.appendChild(studentContainer)
             .innerHTML = `<p>${student.getFullName()}</p> 
                          <p>${student.average}</p>`;
     });
 }
+
+const subjectList = []; // Array que almacena las asignaturas existentes.
+
+// Comprueba si la clave studentList existe, si existe renderiza los datos almacenados en el
+// localStorage.
+if(localStorage.getItem('subjectList')){
+    const subjectsJSON = JSON.parse(localStorage.getItem('subjectList'));
+
+    subjectsJSON.forEach( (subject, i) => {
+        const elemArr = [];
+        subjectList.push(new Subject({id: subject.id, subjectName: subject.name, 
+        totalHours: subject.totalHours}));
+        elemArr.push(subjectList[i].id, subjectList[i].name, subjectList[i].totalHours);
+        printDataList("subjectList__info", 'subjectInfo', subject.id, elemArr);
+    });
+}
+
+// Función que añade una asignatura a la lista de asignaturas.
+const addSubject = function(e){
+    const subjectId = document.getElementById('subjectId');
+    const subjectName = document.getElementById('subjectName');
+    const totalHours = document.getElementById('totalHours');
+
+    const subjectLength = subjectList.length+1;
+    subjectList.push(new Subject({id: subjectId.value, subjectName: subjectName.value, 
+        totalHours: totalHours.value}));
+    e.preventDefault();
+
+    localStorage.setItem('subjectList', JSON.stringify(subjectList));
+
+    subjectId.value = '';
+    subjectName.value = '';
+    totalHours.value = '';
+
+    const subject = subjectList[subjectLength - 1];
+
+    // Array que contiene la info que se va a mostrar.
+    const elemArr = [];
+    elemArr.push(subject.id, subject.name, subject.totalHours);
+    printDataList("subjectList__info", 'subjectInfo', subject.id, elemArr);
+
+    // Añade una clase para ocultar los inputs y el boton de enviar.
+    subjectId.classList.add('hidden');
+    subjectName.classList.add('hidden');
+    totalHours.classList.add('hidden');
+    document.getElementById('subjectSubmitBtn').classList.add('hidden');
+};
 
 // Agregando eventos
 document.getElementById('descAvg').onclick = () => printStudentAvgList(studentArr);
@@ -119,4 +210,17 @@ document.getElementById('addStudent').onclick = () => {
     document.getElementById('name').classList.remove('hidden');
     document.getElementById('surname').classList.remove('hidden');
     document.getElementById('submit').classList.remove('hidden');
+};
+
+// Evento para cerrar el modal.
+document.getElementById('closeModalBtn')
+    .addEventListener('click', () => overlay.style.display = 'none');
+
+document.getElementById('formSubject').onsubmit = e => addSubject(e);
+document.getElementById('addSubjectBtn').onclick = () => {
+    // Elimina la clase que oculta los inputs al clickear en el boton de añadir
+    document.getElementById('subjectId').classList.remove('hidden');
+    document.getElementById('subjectName').classList.remove('hidden');
+    document.getElementById('totalHours').classList.remove('hidden');
+    document.getElementById('subjectSubmitBtn').classList.remove('hidden');
 };

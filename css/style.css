@@ -19,6 +19,29 @@ h1 > span{
     color: blue;
 }
 
+#overlay{
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#modal{
+    max-width: 600px;
+    height: 300px;
+    margin: auto;
+    background-color: white;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
 main{
     margin: 10px auto;
     width: 90%;
@@ -36,7 +59,7 @@ main{
     height: 30px;
 }
 
-.studentSubmit{
+.submitButton{
     width: 125px;
     height: 30px;
 }
@@ -73,6 +96,40 @@ main{
     cursor: pointer;
 }
 
+.studentSubjectForm{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    column-gap: 25px;
+}
+
+.subjectList{
+    display: flex;
+    flex-direction: column;
+    padding: 5px 0;
+    border: 3px solid black;
+}
+
+.subjectList__head{
+    display: flex;
+    justify-content: space-around;
+}
+
+.subjectList__content{
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+}
+
+.subjectList__info{
+    display: flex;
+    justify-content: space-around;
+
+    background-color: black;
+    color: white;
+    
+    cursor: pointer;
+}
 
 footer{
     background-color: black;
