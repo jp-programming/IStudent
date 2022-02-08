@@ -18,8 +18,10 @@ const printDataList = (DOMClass, DOMId, id, arr, eventFunction = null) => {
 
 // Obtiene el nombre del estudiante y lo pone en el modal
 const overlay = $('#overlay');
+const modal = $('#modal');
 const addStudentSubjects = (e) => {
     overlay.css('display', 'block');
+    modal.fadeOut(500).fadeIn(250); // Animación encadenada que oculta y muestra el modal.
     $('#modalName').text(e.target.firstChild.textContent);
 };
 

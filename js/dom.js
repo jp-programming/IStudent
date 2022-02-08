@@ -11,7 +11,8 @@ $( () => {
     });
 
     // Evento para cerrar el modal.
-    $('#closeModalBtn').on('click', () => overlay.css('display', 'none') );
+    $('#closeModalBtn').on('click', () => modal.fadeOut(500, 
+        () => overlay.css('display', 'none')));
 
     $('#formSubject').submit( e => addSubject(e) );
     $('#addSubjectBtn').click( () => {
