@@ -50,8 +50,8 @@ const addStudent = function(e){
     studentArr.push(new Student({name: name.val(), surname: surname.val()}, studentLength));
     e.preventDefault();
 
-    //localStorage.setItem('studentList', JSON.stringify(studentArr));
-    
+    localStorage.setItem('studentList', JSON.stringify(studentArr));
+
     name.val('');
     surname.val('');
 
