@@ -6,6 +6,9 @@
 }
 
 header{
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
     background-color: black;
     height: 5em;
 }
@@ -16,7 +19,7 @@ h1{
 }
 
 h1 > span{
-    color: blue;
+    color: rgb(83, 83, 190);
 }
 
 #overlay{
@@ -43,6 +46,9 @@ h1 > span{
 }
 
 main{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
     margin: 10px auto;
     width: 90%;
 }
@@ -57,11 +63,26 @@ main{
 .addButton{
     width: 30px;
     height: 30px;
+    background-color: rgb(83, 83, 190);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
 }
 
 .submitButton{
     width: 125px;
     height: 30px;
+    background-color: rgb(83, 83, 190);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover{
+    background-color: rgb(64, 64, 199);
+    color: rgb(245, 231, 231);
 }
 
 .hidden{
@@ -131,7 +152,31 @@ main{
     cursor: pointer;
 }
 
+.sortBtn{
+    width: 125px;
+    height: 25px;
+    background-color: rgb(83, 83, 190);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+}
+
 footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: black;
     height: 5em;
+    width: 100%;
+    font-weight: bold;
+}
+
+footer > span{
+    color: white;
+}
+
+footer > span > a{
+    color: rgb(83, 83, 190);
+    text-decoration: none;
 }

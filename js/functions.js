@@ -21,7 +21,7 @@ const overlay = $('#overlay');
 const modal = $('#modal');
 const addStudentSubjects = (e) => {
     overlay.css('display', 'block');
-    modal.fadeOut(500).fadeIn(250); // Animación encadenada que oculta y muestra el modal.
+    modal.fadeOut('slow').fadeIn(250); // Animación encadenada que oculta y muestra el modal.
     $('#modalName').text(e.target.firstChild.textContent);
 };
 
@@ -50,7 +50,7 @@ const addStudent = function(e){
     studentArr.push(new Student({name: name.val(), surname: surname.val()}, studentLength));
     e.preventDefault();
 
-    localStorage.setItem('studentList', JSON.stringify(studentArr));
+    //localStorage.setItem('studentList', JSON.stringify(studentArr));
     
     name.val('');
     surname.val('');
