@@ -56,7 +56,7 @@ const addStudentSubjects = (e) => {
         elemArr.push(gd.id, name, totalHours);
         printDataList("subjectStdList__info", 'subjectStdInfo', `S-${gd.id}`, elemArr);
 
-        $(`#S-${gd.id}`).append(`<input id="${gd.id}Grade" class="gradeInput" value="${gd.grade}" placeholder="Calificación"/>`);
+        $(`#S-${gd.id}`).append(`<input id="${gd.id}Grade" class="gradeInput" value="${gd.grade}" />`);
     });
 };
 
