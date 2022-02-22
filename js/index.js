@@ -7,7 +7,7 @@ if(localStorage.getItem('studentList')){
         const elemArr = [];
         studentArr.push(new Student({name: student.name, surname: student.surname,
         grades: student.grades, sumGrades: student.sumGrades, average: student.average}, student.id));
-        elemArr.push(studentArr[i].getFullName(), studentArr[i].average);
+        elemArr.push(student.id, studentArr[i].getFullName(), studentArr[i].average);
         printDataList("studentList__info", 'studentInfo', student.id, elemArr, addStudentSubjects);
     });
 }

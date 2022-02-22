@@ -5,6 +5,11 @@
     font-size: 1em;
 }
 
+.pageContainer{
+    position: relative;
+    min-height: 100vh;
+}
+
 header{
     display: flex;
     align-items: center;
@@ -38,11 +43,83 @@ h1 > span{
     height: 300px;
     margin: auto;
     background-color: white;
+    padding: 5px;
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
+    border-radius: 5px;
+}
+
+.closeModalBtn{
+    width: 30px;
+    height: 30px;
+    background-color: rgb(206, 31, 31);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.closeModalBtn:hover{
+    background-color: rgb(209, 5, 5);
+}
+
+.subjectStdList{
+    display: flex;
+    width: 95%;
+    margin: 0 auto;
+    margin-top: 10px;
+    flex-direction: column;
+    padding: 5px 0;
+    border: 3px solid black;
+}
+
+.subjectStdList__head{
+    display: flex;
+    justify-content: space-around;
+}
+
+.subjectStdList__content{
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+}
+
+.subjectStdList__info{
+    display: flex;
+    justify-content: space-around;
+
+    background-color: black;
+    color: white;
+    
+    cursor: pointer;
+}
+
+.gradeInput{
+    width: 30px;
+    text-align: center;
+}
+
+.subjectStdModalButton{
+    width: 100px;
+    height: 25px;
+    background-color: rgb(26, 167, 49);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.subjectStdModalButton:hover{
+    background-color: rgb(29, 184, 55);
 }
 
 main{
@@ -51,6 +128,7 @@ main{
     row-gap: 10px;
     margin: 10px auto;
     width: 90%;
+    padding-bottom: 5em;
 }
 
 .studentForm{
@@ -83,6 +161,25 @@ main{
 button:hover{
     background-color: rgb(64, 64, 199);
     color: rgb(245, 231, 231);
+}
+
+.subjectStdSubmitButton{
+    width: 80px;
+    height: 25px;
+    background-color: rgb(83, 83, 190);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.selectSubject{
+    background-color: rgb(83, 83, 190);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    text-align: center;
 }
 
 .hidden{
@@ -170,6 +267,8 @@ footer{
     height: 5em;
     width: 100%;
     font-weight: bold;
+    position: absolute;
+    bottom: 0;
 }
 
 footer > span{

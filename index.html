@@ -8,59 +8,80 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header>
-        <h1><span>IS</span>tudent</h1>
-    </header>
-    <!-- Contenido de la página -->
-    <div id="overlay">
-        <div id="modal">
-            <button id="closeModalBtn">X</button>
-            <h3 id="modalName"></h3>
-            
+    <div class="pageContainer">
+        <header>
+            <h1><span>IS</span>tudent</h1>
+        </header>
+        <!-- Contenido de la página -->
+        <div id="overlay">
+            <div id="modal">
+                <button id="closeModalBtn" class="closeModalBtn">X</button>
+                <h3 id="modalId"></h3>
+                <h3 id="modalName"></h3>
+
+                <label for="subject">Asignaturas:</label>
+                <select class="selectSubject" name="subject" id="subjectSelect">
+                </select>
+                <button type="button" id="subjectStdSubmitBtn" class="subjectStdSubmitButton">Agregar</button>
+
+                <div class="subjectStdList">
+                    <div class="subjectStdList__head">
+                        <span>Id</span>
+                        <span>Nombre</span>
+                        <span>Cantidad de horas</span>
+                        <span>Calificación</span>
+                    </div>
+                    <div class="subjectStdList__content" id="subjectStdInfo">
+                    </div>
+                </div>
+
+                <button type="button" id="subjectStdBtn" class="subjectStdModalButton">Enviar</button>
+            </div>
         </div>
+        <main>
+            <h2>Lista de estudiantes</h2>
+            <div class="studentList">
+                <div class="studentList__head">
+                    <span>Id</span>
+                    <span>Estudiante</span>
+                    <span>Promedio</span>
+                </div>
+                <div class="studentList__content" id="studentInfo">
+                    <form id="form" class="studentForm">
+                        <button type="button" class="addButton" id="addStudent">+</button>
+                        <input type="text" name="name" id="name" class="hidden" placeholder="Nombre" required>
+                        <input type="text" name="surname" id="surname" class="hidden" placeholder="Apellido" required>
+                        <button type="submit" id="submit" class="submitButton hidden">Enviar</button>
+                    </form>
+                </div>
+            </div>
+    
+            <label for="descAvg">Ordenar en forma descendente:</label>
+            <button type="button" id="descAvg" class="sortBtn">Ordenar</button>
+    
+            <h2>Lista de asignaturas</h2>
+            <div class="subjectList">
+                <div class="subjectList__head">
+                    <span>Id</span>
+                    <span>Nombre</span>
+                    <span>Cantidad de horas</span>
+                </div>
+                <div class="subjectList__content" id="subjectInfo">
+                    <form id="formSubject" class="studentSubjectForm">
+                        <button type="button" class="addButton" id="addSubjectBtn">+</button>
+                        <input type="text" name="subjectId" id="subjectId" class="hidden" placeholder="Clave" required>
+                        <input type="text" name="subjectName" id="subjectName" class="hidden" placeholder="Nombre de asignatura" required>
+                        <input type="text" name="totalHours" id="totalHours" class="hidden" placeholder="Cantidad de horas" required>
+                        <button type="submit" id="subjectSubmitBtn" class="submitButton hidden">Enviar</button>
+                    </form>
+                </div>
+            </div>
+    
+        </main>
+        <footer>
+            <span>Desarrollado por: <a href="https://github.com/jp-programming" target="_blank">jp-programming</a></span>
+        </footer>
     </div>
-    <main>
-        <h2>Lista de estudiantes</h2>
-        <div class="studentList">
-            <div class="studentList__head">
-                <span>Estudiante</span>
-                <span>Promedio</span>
-            </div>
-            <div class="studentList__content" id="studentInfo">
-                <form id="form" class="studentForm">
-                    <button type="button" class="addButton" id="addStudent">+</button>
-                    <input type="text" name="name" id="name" class="hidden" placeholder="Nombre" required>
-                    <input type="text" name="surname" id="surname" class="hidden" placeholder="Apellido" required>
-                    <button type="submit" id="submit" class="submitButton hidden">Enviar</button>
-                </form>
-            </div>
-        </div>
-
-        <label for="descAvg">Ordenar en forma descendente:</label>
-        <button type="button" id="descAvg" class="sortBtn">Ordenar</button>
-
-        <h2>Lista de asignaturas</h2>
-        <div class="subjectList">
-            <div class="subjectList__head">
-                <span>Id</span>
-                <span>Nombre</span>
-                <span>Cantidad de horas</span>
-            </div>
-            <div class="subjectList__content" id="subjectInfo">
-                <form id="formSubject" class="studentSubjectForm">
-                    <button type="button" class="addButton" id="addSubjectBtn">+</button>
-                    <input type="text" name="subjectId" id="subjectId" class="hidden" placeholder="Clave" required>
-                    <input type="text" name="subjectName" id="subjectName" class="hidden" placeholder="Nombre de asignatura" required>
-                    <input type="text" name="totalHours" id="totalHours" class="hidden" placeholder="Cantidad de horas" required>
-                    <button type="submit" id="subjectSubmitBtn" class="submitButton hidden">Enviar</button>
-                </form>
-            </div>
-        </div>
-
-    </main>
-    <footer>
-        <span>Desarrollado por: <a href="https://github.com/jp-programming" target="_blank">jp-programming</a></span>
-    </footer>
     
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <!-- script.js -->

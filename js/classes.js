@@ -22,34 +22,18 @@ Student.prototype.constructor = Student;
 // Esta función hace una sumatoria de todas las nota del estudiante.
 Student.prototype.summatory = (grades, grade) => grades + grade;
 
-// Toma cada una de las notas del estudiante, dependiendo de cuantas
-// calificaciones se quiera tomar, guarda cada una de ellas y su sumatoria.
-Student.prototype.setGrades = function(num){
-    let counter = 0;
-    let grade;
-
-    // Esta instrucción toma y va sumando cada una de las notas digitadas.
-    while(num > counter){
-        grade = parseInt(prompt(`Digite la nota de la asignatura #${++counter}:`));
-        this.grades.push(grade);
-        this.sumGrades = this.summatory(this.sumGrades, grade);
-    }
-};
-
 // Esta es la función que calcula el promedio de las calificaciones.
 Student.prototype.setAverage = function(grades, num) {
     this.average = Math.round(grades / num);
 } 
 
-// Por último esta es la función principal del programa, es la encargada de
-// llamar en el orden correcto a cada una de las funciones para que el código
-// sea legible.
+// Función que realiza la suma de las calificaciones y calcula el average.
 Student.prototype.studentGradesAvg = function(){
-    const num = parseInt(prompt(`Calcular promedio 
-    Introduzca la cantidad de asignaturas:`));
-
-    this.setGrades(num); // Guarda las calificaciones del estudiante.
-    this.setAverage(this.sumGrades, num); // Guarda el promedio de las calificaciones.
+    this.grades.forEach((gd)=>{
+        this.sumGrades = this.summatory(this.sumGrades, gd.grade);
+    });
+    
+    this.setAverage(this.sumGrades, this.grades.length); // Guarda el promedio de las calificaciones.
 };
 
 // Función constructora de las asignaturas.
